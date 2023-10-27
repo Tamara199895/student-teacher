@@ -18,4 +18,8 @@ class Student extends Model
     public function user(){
         return $this->belongsTo(User::class, 'student_id', 'id');
     }
+    public function group()
+    {
+        return $this->hasOne(Group::class, $foreignKey = 'id',$localKey = 'group_id');
+    }
 }

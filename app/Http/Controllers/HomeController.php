@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Group;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,7 +31,8 @@ class HomeController extends Controller
 
     public function studentHome()
     {
-    return view('studentHome');
+    $student = Student::where('student_id', auth()->user()->id)->first();    
+    return view('studentHome')->with(['student' => $student]);
     }
     public function teacherHome()
     {

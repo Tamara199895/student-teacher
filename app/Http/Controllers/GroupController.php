@@ -39,7 +39,7 @@ class GroupController extends Controller
     {
         $find_group= Group::with(['retebook', 'retebook.student', 'retebook.student.user'])->find($group->id);
         $students = Student::with('user')->where('group_id', $find_group->id)->get();
-        // dd($find_group->retebook[0]->student);
+        // dd($find_group->retebook[0]);
         return view('group')->with(['group'=> $find_group, 'students'=> $students]);
     }
 

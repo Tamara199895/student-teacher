@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RateBookController;
 
@@ -33,4 +34,9 @@ Route::get('/teacher/home', [HomeController::class, 'teacherHome'])->name('teach
 Route::resource('group', GroupController::class);
 Route::resource('teacher', TeacherController::class);
 Route::resource('ratebook', RateBookController::class);
+Route::resource('student', StudentController::class);
+Route::get('/student/groupForm/{student_id}', [StudentController::class, 'groupForm'])->name('student.groupForm');
+Route::post('student/addGroup', [StudentController::class, 'addGroup'])->name('student.addGroup');
+
+
 

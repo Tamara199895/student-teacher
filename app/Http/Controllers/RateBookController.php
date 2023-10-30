@@ -28,7 +28,13 @@ class RateBookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ratebook = Ratebook::find($request->id);
+            $ratebook->update([
+            'rate' => $request,
+            'comment' => $request->comment
+        ]);
+        
+        return redirect()->back();
     }
 
     /**
@@ -44,7 +50,6 @@ class RateBookController extends Controller
      */
     public function edit(Ratebook $ratebook)
     {
-        dd($ratebook);
     }
 
     /**

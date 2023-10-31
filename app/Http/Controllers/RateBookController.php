@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ratebook;
 use Illuminate\Http\Request;
+use App\Http\Requests\RateRequest;
 
 class RateBookController extends Controller
 {
@@ -26,14 +27,16 @@ class RateBookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RateRequest $request)
     {
+        $validated = $request->validated();
+        // dd($validated);
         $ratebook = Ratebook::find($request->id);
-            $ratebook->update([
-            'rate' => $request,
-            'comment' => $request->comment
+
+        Ratebook::where("id",$request->id)->update([
+            'mark' => $validated['mark'],
+            'comment' => $validated['comment']
         ]);
-        
         return redirect()->back();
     }
 

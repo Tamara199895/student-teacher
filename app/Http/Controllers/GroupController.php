@@ -38,8 +38,7 @@ class GroupController extends Controller
     public function show(Group $group)
     {
         $find_group= Group::with(['retebook', 'retebook.student', 'retebook.student.user'])->find($group->id);
-        $students = Student::with('user')->where('group_id', $find_group->id)->get();
-        // dd($students);
+        $students = Student::with(['user','group'])->where('group_id', $find_group->id)->get();
         return view('group')->with(['group'=> $find_group, 'students'=> $students]);
     }
 

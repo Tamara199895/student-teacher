@@ -10,6 +10,11 @@ use App\Http\Requests\addGroupRequest;
 
 class StudentController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -28,7 +33,7 @@ class StudentController extends Controller
     public function addGroup(addGroupRequest $request){
         $validated = $request->validated();
         Student::where('student_id', $request->student_id)
-        ->update(
+        ->update(   
             [
                 'group_id' => $request->group_id,
             ]

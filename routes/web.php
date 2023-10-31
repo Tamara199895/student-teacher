@@ -30,8 +30,8 @@ Route::middleware(['auth', 'user-access:student'])->group(function () {
     });
 Route::middleware(['auth', 'user-access:teacher'])->group(function () {
 Route::get('/teacher/home', [HomeController::class, 'teacherHome'])->name('teacher.home');
-});
 Route::resource('group', GroupController::class);
+});
 Route::resource('teacher', TeacherController::class);
 Route::resource('ratebook', RateBookController::class);
 Route::resource('student', StudentController::class);
